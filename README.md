@@ -46,6 +46,14 @@ $$\text{ValLoss} \le \text{ValLoss}_{\min} + \epsilon \quad \implies \quad \arg\
 | **Regularization / Output** | `dropoutLayer(0.2)` $\rightarrow$ `fullyConnectedLayer(1)` | `fullyConnectedLayer(1)` |
 | **Focus** | Overfitting prevention on noisy signals | Non-linear feature mapping |
 
+## Repository Structure & Script Directory
+
+| Script Name | Role & Description |
+| :--- | :--- |
+| `train.m` | **Baseline Training**: Filters features by correlation, builds the sequence dataset, trains a single baseline LSTM model, evaluates test metrics, and exports `model.mat`. |
+| `flop_small_search.m` | **Single-Architecture FLOP Search**: Performs a grid search over sequence length ($T$) and hidden units ($H$) for a single architecture to analyze the accuracy vs. FLOPs trade-off. |
+| `flop_search.m` | **Exhaustive Multi-Loss & Multi-Arch Search**: Runs a massive GPU-accelerated grid search across multiple loss functions (MSE, MAE, Huber) and network topologies under a strict FLOP limit. Exports summary tables (`.xlsx`). |
+| `RT_try.m` | **Real-Time Inferences & Out-of-Sample Testing**: Loads a trained `.mat` model artifact, applies saved preprocessing parameters to new input data, and performs real-time predictions with comprehensive diagnostic plots. |
 
 ## Project Workflow
 
